@@ -1,15 +1,17 @@
 # Flask 框架
 
-## FLASK 基础框架说明
+## 说明
+
+### FLASK 基础框架说明
 
 file name : index_1.py
 
 ```python
 # index_1.py
 from flask import Flask     # 导入 flask 扩展中的 Flask 类
-app = Flask(__name__)       # 定一个变量 app，并传递参数 __name__ 
+app = Flask(__name__)       # 实例化：定一个变量 app，并传递参数 __name__ 
 
-@app.route("/")             # 名字为路由的装饰器，传入变量 /(pass)
+@app.route("/")             # 装饰器，传入路由变量 / pass
 def hello():                # 定义一个名为 hello 的函数
     return "Hello World!"   # 返回字符串 Hello World!
 ```
@@ -17,10 +19,22 @@ def hello():                # 定义一个名为 hello 的函数
 说明：
 
 - **Line 3 : Flask初始化参数尽量使用你的包名，这个初始化方式是官方推荐的**，[官方解释](http://flask.pocoo.org/docs/0.12/api/#flask.Flask)
-
 - 以上基本框架是为 **本机访问**
 
-## 运行方法
+### 运行指令
+
+```shell
+$ export FLASK_APP = index_1.py
+$ flask run
+$ flask run --host 0.0.0.0
+$ flask run --help
+```
+
+
+
+
+
+## 运行
 
 ### Windows 平台
 
@@ -35,64 +49,32 @@ def hello():                # 定义一个名为 hello 的函数
 
 <img src="Resources/00.jpg" style="zoom:67%;" />
 
-​		`注意：蓝色端口是本机端口`
-
-- 打开输出结果中的 蓝色网址：
+- 打开输出结果中的网址：
 
   <img src="Resources/01.jpg" style="zoom:67%;" />
-
-## Flask 基础框架优化
-
-用python 实现 flask 启动 **app.run(host='0.0.0.0',port=5000)**
-
-用python开启flask web服务时，有一下两种情况：
-
-#### 1. 只需要本机访问时
-
-**ip 只要不设置为0.0.0.0就可以，正常访问就好,即不带有 host 值**
-
-```python
-from flask import Flask     # 导入 flask 扩展中的 Flask 类
-app = Flask(__name__)       # 定一个变量 app，并传递参数 __name__ 
-
-@app.route("/")             # 名字为路由的装饰器，传入变量 /(pass)
-def hello():                # 定义一个名为 hello 的函数
-    return "Hello World!"   # 返回字符串 Hello World!
-
-if __name__ == "__main__":
-    app.run( debug=True) # 添加外网访问
-```
-
-#### 2. 需要访问外网时
-
-**ip需要设置为0.0.0.0，即，host 值 需要设置为 0.0.0.0**
-
-**此时，在本机上访问需要使用默认的127.0.0.1（也就是不设置ip时默认的ip）,在外网上访问则需要使用本机的ip，不要使用0.0.0.0。**
-
-```python
-from flask import Flask     # 导入 flask 扩展中的 Flask 类
-app = Flask(__name__)       # 定一个变量 app，并传递参数 __name__ 
-
-@app.route("/")             # 名字为路由的装饰器，传入变量 /(pass)
-def hello():                # 定义一个名为 hello 的函数
-    return "Hello World!"   # 返回字符串 Hello World!
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True) # 添加外网访问
-```
-
-
-
-### 注意
-
-```python
-arr.run(host="0.0.0.0", debug=True)
-```
-
- 这种是不太推荐的启动方式，这只做演示用，具体看 [官方启动方式参见链接](http://flask.pocoo.org/docs/0.12/quickstart/#a-minimal-application)
-
-
-
-
-
-参考	[CSDN  ChasingdreamLY de 博客](https://blog.csdn.net/qq_26591517/article/details/86423838)
+  
+  ## 运行结果说明
+  
+  ```shell
+  Running on http://127.0.0.1:500/
+  ```
+  
+  说明：
+  
+  - 127.0.0.1 : 特指本地主机才能访问
+  
+  如果想让别人访问，则需要执行一下命令：
+  
+  ```shell
+  flask run --host 0.0.0.0
+  ```
+  
+  结果：
+  
+  ```shell
+  Runing on http://0.0.0.0:500/
+  ```
+  
+  说明：
+  
+  - 0.0.0.0 ：说明的是监听整块网卡，整块网卡都是对外开放的
