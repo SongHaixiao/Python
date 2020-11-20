@@ -47,5 +47,3 @@ arr.run(host="0.0.0.0", debug=True)
  
 
 这种是不太推荐的启动方式，这只做演示用，具体看 [官方启动方式参见链接](http://flask.pocoo.org/docs/0.12/quickstart/#a-minimal-application)
-
-- 
